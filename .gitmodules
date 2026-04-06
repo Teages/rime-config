@@ -1,9 +1,12 @@
-[submodule "reference/rime-wiki"]
-	path = reference/rime-wiki
+[submodule ".agents/skills/rime-config/references/rime-wiki"]
+	path = .agents/skills/rime-config/references/rime-wiki
 	url = https://github.com/rime/home.wiki.git
-[submodule "reference/squirrel"]
-	path = reference/squirrel
+[submodule ".agents/skills/rime-config/references/squirrel"]
+	path = .agents/skills/rime-config/references/squirrel
 	url = https://github.com/rime/squirrel.git
-[submodule "reference/rime-ice"]
-	path = reference/rime-ice
+[submodule ".agents/skills/rime-recipes-ice/references/rime-ice"]
+	path = .agents/skills/rime-recipes-ice/references/rime-ice
 	url = https://github.com/iDvel/rime-ice.git
+[submodule ".agents/skills/rime-preset-mint/references/oh-my-rime"]
+	path = .agents/skills/rime-preset-mint/references/oh-my-rime
+	url = https://github.com/Mintimate/oh-my-rime.git

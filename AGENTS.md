@@ -31,8 +31,20 @@
 ├── user.yaml              # Rime 用戶級配置
 ├── installation.yaml      # Rime 安裝信息（自動生成，勿手動修改）
 ├── build/                 # Rime 構建輸出目錄（自動生成，勿手動修改）
-└── reference/             # 參考資料（只讀）
-    └── rime-wiki/         # Rime 官方 Wiki（git submodule）
+└── .agents/skills/
+    ├── rime-config/       # Rime 配置技能
+    │   ├── SKILL.md       # 技能說明與參考索引
+    │   └── references/    # 參考資料（只讀，git submodule）
+    │       ├── rime-wiki/ # Rime 官方 Wiki
+    │       └── squirrel/  # 【鼠鬚管】源碼
+    ├── rime-recipes-ice/  # 霧凇拼音技能
+    │   ├── SKILL.md       # 技能說明與參考索引
+    │   └── references/
+    │       └── rime-ice/  # 霧凇拼音方案
+    └── rime-preset-mint/  # 薄荷輸入法技能
+        ├── SKILL.md       # 技能說明與參考索引
+        └── references/
+            └── oh-my-rime/ # 薄荷輸入法方案
 ```
 
 ## 核心原則
@@ -57,5 +69,10 @@ pnpm lint:fix
 
 ## 參考資料
 
-- `reference/rime-wiki/`：Rime 官方文檔，涵蓋方案配置、拼寫代數、自定義指南等。
+參考倉庫已收錄於 `.agents/skills/`，各技能詳見：
+
+- [rime-config 技能](.agents/skills/rime-config/SKILL.md) — Rime 配置指南、拼寫代數、自定義技巧
+- [rime-recipes-ice 技能](.agents/skills/rime-recipes-ice/SKILL.md) — 霧凇拼音方案詞庫與配置
+- [rime-preset-mint 技能](.agents/skills/rime-preset-mint/SKILL.md) — 薄荷輸入法方案、皮膚與 Lua 腳本
+
 - [Rime 官方網站](https://rime.im)
