@@ -28,15 +28,8 @@ patch:
     abbreviate_options: true
     option_list_separator: ' / '
 
-  # 中西文切換
   ascii_composer:
     good_old_caps_lock: true
-    switch_key:
-      Caps_Lock: commit_code
-      Shift_L: commit_code
-      Shift_R: inline_ascii
-      Control_L: noop
-      Control_R: noop
 
   # 快捷鍵
   key_binder:
