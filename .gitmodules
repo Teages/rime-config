@@ -18,3 +18,9 @@
 	path = .agents/skills/rime-recipes-wanxiang/references/rime_wanxiang
 	url = https://github.com/amzxyz/rime_wanxiang.git
 	shallow = true
+[submodule ".agents/skills/rime-recipes-wanxiang-model/references/RIME-LMDG"]
+	path = .agents/skills/rime-recipes-wanxiang-model/references/RIME-LMDG
+	url = https://github.com/amzxyz/RIME-LMDG.git
+[submodule ".agents/skills/rime-recipes-wanxiang-model/references/RIME-LMDG.wiki"]
+	path = .agents/skills/rime-recipes-wanxiang-model/references/RIME-LMDG.wiki
+	url = https://github.com/amzxyz/RIME-LMDG.wiki.git
