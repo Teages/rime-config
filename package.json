@@ -11,12 +11,14 @@
     "url": "git+https://github.com/Teages/rime-config.git"
   },
   "scripts": {
+    "build": "jiti scripts/deploy.ts",
     "lint": "eslint --cache .",
     "lint:fix": "eslint --cache --fix ."
   },
   "devDependencies": {
     "@antfu/eslint-config": "^8.0.0",
     "eslint": "^10.2.0",
+    "jiti": "^2.6.1",
     "typescript": "^6.0.2"
   }
 }

@@ -1,0 +1,48 @@
+# Squirrel settings customization
+# encoding: utf-8
+#
+# 【鼠鬚管】外觀定制。此處配置覆蓋 squirrel.yaml 中的默認值。
+
+patch:
+  style:
+    # 亮色與暗色皮膚
+    color_scheme: mint_light_blue
+    color_scheme_dark: mint_dark_blue
+
+    # 候選框排列
+    candidate_list_layout: stacked
+    text_orientation: horizontal
+    inline_preedit: true
+    inline_candidate: false
+
+    # 顯示選項
+    memorize_size: true
+    show_paging: false
+
+    # 尺寸
+    corner_radius: 10
+    hilited_corner_radius: 0
+    border_height: 0
+    border_width: 0
+    line_spacing: 5
+    spacing: 10
+    shadow_size: 0
+
+    # 字體
+    font_face: PingFang SC
+    font_point: 16
+    label_font_face: Lucida Grande
+    label_font_point: 12
+    comment_font_face: PingFang SC
+    comment_font_point: 14
+
+  # 輸入法狀態
+  show_notifications_when: appropriate
+  keyboard_layout: last
+
+  # 應用級別中英文切換（按需啟用）
+  # app_options:
+  #   com.apple.Spotlight:
+  #     ascii_mode: true
+  #   com.microsoft.VSCode:
+  #     ascii_mode: false

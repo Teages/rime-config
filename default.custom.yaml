@@ -1,0 +1,72 @@
+# Rime default settings
+# encoding: utf-8
+#
+# 全局用戶定制文件。此處配置覆蓋 default.yaml 中的默認值。
+# 參考：https://github.com/rime/home/wiki/CustomizationGuide
+
+patch:
+  # 方案列表
+  schema_list:
+    - schema: rime_mint_lite
+
+  # 候選詞數量
+  menu:
+    page_size: 5
+
+  # 方案選單
+  switcher:
+    caption: 〔方案選單〕
+    hotkeys:
+      - Control+grave
+      - Control+Shift+grave
+    save_options:
+      - ascii_punct
+      - transcription
+      - emoji_suggestion
+      - full_shape
+    fold_options: true
+    abbreviate_options: true
+    option_list_separator: ' / '
+
+  # 中西文切換
+  ascii_composer:
+    good_old_caps_lock: true
+    switch_key:
+      Caps_Lock: commit_code
+      Shift_L: commit_code
+      Shift_R: inline_ascii
+      Control_L: noop
+      Control_R: noop
+
+  # 快捷鍵
+  key_binder:
+    select_first_character: bracketleft
+    select_last_character: bracketright
+    bindings:
+      # 光標移動
+      - {when: composing, accept: Shift+Tab, send: Shift+Left}
+      - {when: composing, accept: Tab, send: Shift+Right}
+      - {when: composing, accept: Alt+Left, send: Shift+Left}
+      - {when: composing, accept: Alt+Right, send: Shift+Right}
+      # 翻頁
+      - {when: has_menu, accept: minus, send: Page_Up}
+      - {when: has_menu, accept: equal, send: Page_Down}
+      # 狀態切換
+      - {when: always, accept: Control+Shift+3, toggle: ascii_punct}
+      - {when: always, accept: Control+Shift+numbersign, toggle: ascii_punct}
+      - {when: always, accept: Control+Shift+4, toggle: transcription}
+      - {when: always, accept: Control+Shift+dollar, toggle: transcription}
+      - {when: always, accept: Control+Shift+E, toggle: emoji_suggestion}
+      # 小鍵盤映射
+      - {accept: KP_0, send: 0, when: composing}
+      - {accept: KP_1, send: 1, when: composing}
+      - {accept: KP_2, send: 2, when: composing}
+      - {accept: KP_3, send: 3, when: composing}
+      - {accept: KP_4, send: 4, when: composing}
+      - {accept: KP_5, send: 5, when: composing}
+      - {accept: KP_6, send: 6, when: composing}
+      - {accept: KP_7, send: 7, when: composing}
+      - {accept: KP_8, send: 8, when: composing}
+      - {accept: KP_9, send: 9, when: composing}
+      - {accept: KP_Decimal, send: period, when: composing}
+      - {accept: KP_Enter, send: Return, when: composing}

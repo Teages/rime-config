@@ -1,0 +1,513 @@
+# Rime schema
+# encoding: utf-8
+#
+# 薄荷拼音精簡版——基於 oh-my-rime 的 rime_mint 方案精簡而來。
+# 保留：全拼、英文混輸、Emoji、簡繁切換、拆字反查、錯音提示
+# 移除：日期時間、農曆、計算器、聲調顯示、五筆反查、筆畫反查等
+
+schema:
+  schema_id: rime_mint_lite
+  name: 薄荷拼音精簡版
+  version: 0.1.0
+  author:
+    - Teages
+    - mintimate <@Mintimate>
+  description: |
+    基於薄荷拼音的全拼輸入方案（精簡版）。
+    參考：
+      * rime wiki: https://github.com/rime/home/wiki
+      * rime ice: https://github.com/iDvel/rime-ice
+      * oh-my-rime: https://github.com/Mintimate/oh-my-rime
+  dependencies:
+    - radical_pinyin
+    - melt_eng
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [中文, 英文]
+  - name: emoji_suggestion
+    states: [😣️, 😁️]
+    reset: 1
+  - name: full_shape
+    states: [半角, 全角]
+    reset: 0
+  - name: transcription
+    states: [简体, 繁体]
+    reset: 0
+  - name: ascii_punct
+    states: [。，, ．，]
+    reset: 0
+
+engine:
+  processors:
+    - lua_processor@*select_character
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - affix_segmentor@radical_reverse_lookup
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - script_translator
+    - table_translator@melt_eng
+    - reverse_lookup_translator@radical_reverse_lookup
+    - lua_translator@*force_gc
+  filters:
+    - lua_filter@*corrector_filter
+    - simplifier@emoji_suggestion
+    - simplifier@transcription_cc
+    - lua_filter@*reduce_english_filter
+    - uniquifier
+
+# 簡繁切換
+transcription_cc:
+  option_name: transcription
+  opencc_config: s2t.json
+  tips: none
+  excluded_types: [reverse_lookup]
+
+# Emoji
+emoji_suggestion:
+  opencc_config: emoji.json
+  option_name: emoji_suggestion
+  tips: all
+  inherit_comment: false
+
+# Lua: 降低部分英語單詞在候選項的位置
+reduce_english_filter:
+  mode: all
+  idx: 2
+  words:
+    - aid
+    - ann
+    - bail
+    - bait
+    - bam
+    - band
+    - bans
+    - bat
+    - bay
+    - bend
+    - bent
+    - benz
+    - bib
+    - bid
+    - bien
+    - biz
+    - boc
+    - bop
+    - bos
+    - bud
+    - buf
+    - cab
+    - cad
+    - cain
+    - cam
+    - cans
+    - cap
+    - cas
+    - cef
+    - chad
+    - chan
+    - chap
+    - chef
+    - cher
+    - chew
+    - chic
+    - chin
+    - chip
+    - chit
+    - coup
+    - cum
+    - cunt
+    - cur
+    - dab
+    - dag
+    - dal
+    - dam
+    - dent
+    - dew
+    - dial
+    - diet
+    - dim
+    - din
+    - dip
+    - dis
+    - dit
+    - doug
+    - dub
+    - dug
+    - dunn
+    - fab
+    - fax
+    - fob
+    - fog
+    - foul
+    - fur
+    - gag
+    - gail
+    - gain
+    - gal
+    - gam
+    - gaol
+    - ged
+    - gel
+    - ger
+    - guam
+    - gus
+    - gut
+    - hail
+    - ham
+    - hank
+    - hans
+    - hat
+    - hay
+    - heil
+    - heir
+    - hem
+    - hep
+    - hud
+    - hum
+    - hung
+    - hunk
+    - hut
+    - jim
+    - jug
+    - kat
+    - lab
+    - lad
+    - lag
+    - laid
+    - lam
+    - laos
+    - lap
+    - lat
+    - lax
+    - lay
+    - led
+    - leg
+    - lex
+    - liam
+    - lib
+    - lid
+    - lied
+    - lien
+    - lies
+    - linn
+    - lip
+    - lit
+    - liz
+    - lob
+    - lug
+    - lund
+    - lung
+    - lux
+    - mag
+    - maid
+    - mann
+    - mar
+    - mat
+    - med
+    - mel
+    - mend
+    - mens
+    - ment
+    - mil
+    - mins
+    - mint
+    - mob
+    - moc
+    - mop
+    - mos
+    - mot
+    - mud
+    - mug
+    - mum
+    - nail
+    - nap
+    - nat
+    - nay
+    - neil
+    - nib
+    - nip
+    - noun
+    - nous
+    - nun
+    - nut
+    - pac
+    - paid
+    - pail
+    - pain
+    - pair
+    - pak
+    - pal
+    - pam
+    - pans
+    - pant
+    - pap
+    - par
+    - pat
+    - paw
+    - pax
+    - pens
+    - pic
+    - pier
+    - pies
+    - pins
+    - pint
+    - pit
+    - pix
+    - pod
+    - pop
+    - pos
+    - pot
+    - pour
+    - pow
+    - pub
+    - rand
+    - rant
+    - rent
+    - rep
+    - res
+    - ret
+    - rex
+    - rib
+    - rid
+    - rig
+    - rim
+    - rub
+    - rug
+    - rum
+    - runc
+    - runs
+    - sac
+    - sail
+    - sal
+    - sam
+    - sans
+    - sap
+    - saw
+    - sax
+    - sew
+    - sham
+    - shaw
+    - shin
+    - sig
+    - sin
+    - sip
+    - sis
+    - suit
+    - sung
+    - suns
+    - sup
+    - sur
+    - sus
+    - tad
+    - tail
+    - taj
+    - tar
+    - tax
+    - tec
+    - ted
+    - tel
+    - ter
+    - tex
+    - tic
+    - tied
+    - tier
+    - ties
+    - tim
+    - tin
+    - tit
+    - tour
+    - tout
+    - tum
+    - wag
+    - wand
+    - womens
+    - wap
+    - wax
+    - weir
+    - won
+    - yan
+    - yen
+
+# 主翻譯器
+translator:
+  dictionary: rime_mint_lite
+  enable_word_completion: true
+  spelling_hints: 8
+  always_show_comments: true
+  comment_format:
+    - xform/^/〔/
+    - xform/$/〕/
+  preedit_format:
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+  initial_quality: 1.2
+  enable_user_dict: true
+
+# 英文輸入
+melt_eng:
+  dictionary: melt_eng
+  enable_sentence: false
+  enable_completion: false
+  initial_quality: 1.0
+  comment_format:
+    - xform/.*//
+
+# 拆字反查
+radical_reverse_lookup:
+  tag: radical_lookup
+  dictionary: radical_pinyin
+  enable_completion: false
+  enable_sentence: false
+  prefix: Uu
+  tips: 〔拆字〕
+
+reverse_lookup:
+  tags: [radical_lookup]
+  overwrite_comment: true
+  dictionary: rime_mint_lite
+
+# 標點符號
+punctuator:
+  import_preset: symbols
+  half_shape:
+    '#': '#'
+    '*': '*'
+    .: {commit: 。}
+    '`': '`'
+    '~': '~'
+    '@': '@'
+    =: =
+    /: [/, ÷]
+    '\': 、
+    _: ──
+    "'": {pair: [「, 」]}
+    '[': [【, '[']
+    ']': [】, ']']
+    $: [¥, $, €, £, ¢, ¤]
+    <: [《, 〈, «, <]
+    '>': [》, 〉, », '>']
+
+# 反查與特殊輸入識別
+recognizer:
+  import_preset: default
+  patterns:
+    url: '^[a-z]+[.].+$'
+    punct: '^/([0-9]0?|[a-zA-Z]+)$'
+    radical_lookup: "Uu[a-z]*'?$"
+    uppercase: ''
+
+# 快捷鍵
+key_binder:
+  import_preset: default
+  bindings:
+    - {accept: 'Control+Shift+E', toggle: emoji_suggestion, when: always}
+    - {accept: 'Control+Shift+1', toggle: transcription, when: has_menu}
+    - {accept: 'Control+Shift+exclam', toggle: transcription, when: has_menu}
+
+# 候選詞數量
+menu:
+  page_size: 5
+
+# 拼寫設定
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  delimiter: ' `'
+  algebra:
+    # 萬象詞庫帶聲調拼音轉換
+    - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
+    - xform/^ng$/eng/
+    - xform/ńg|ňg|ǹg/eng/
+    - xform/ń|ň|ǹ/en/
+    - erase/^xx$/
+    # 自動糾錯
+    - derive/([aeiou])ng$/$1gn/
+    - derive/([dtngkhrzcs])o(u|ng)$/$1o/
+    - derive/ong$/on/
+    - derive/un$/ong/
+    # 簡拼
+    - derive/^([zcs]h).+$/$1/
+    - abbrev/^([a-z]).+$/$1/
+    # zh、ch、sh 糾錯
+    - derive/([zcs])h(a|e|i|u|ai|ei|an|en|ou|uo|ua|un|ui|uan|uai|uang|ang|eng|ong)$/h$1$2/
+    - derive/([zcs])h([aeiu])$/$1$2h/
+    # ai
+    - derive/^([wghk])ai$/$1ia/
+    # ia
+    - derive/([qjx])ia$/$1ai/
+    # ei
+    - derive/([wtfghkz])ei$/$1ie/
+    # ie
+    - derive/([jqx])ie$/$1ei/
+    # ao
+    - derive/([rtypsdghklzcbnm])ao$/$1oa/
+    # ou
+    - derive/([ypfm])ou$/$1uo/
+    # ang
+    - derive/([wrtypsdfghklzcbnm])ang$/$1nag/
+    - derive/([wrtypsdfghklzcbnm])ang$/$1agn/
+    # eng
+    - derive/([wrtpsdfghklzcbnm])eng$/$1neg/
+    - derive/([wrtpsdfghklzcbnm])eng$/$1egn/
+    # ing
+    - derive/([qtypdjlxbnm])ing$/$1nig/
+    - derive/([qtypdjlxbnm])ing$/$1ign/
+    # ong
+    - derive/([rtysdghklzcn])ong$/$1nog/
+    - derive/([rtysdghklzcn])ong$/$1ogn/
+    # iao
+    - derive/([qtpdjlxbnm])iao$/$1ioa/
+    - derive/([qtpdjlxbnm])iao$/$1oia/
+    # ui
+    - derive/([rtsghkzc])ui$/$1iu/
+    # iu
+    - derive/([qjlxnm])iu$/$1ui/
+    # ian
+    - derive/([qtpdjlxbnm])ian$/$1ain/
+    # in
+    - derive/([qypjlxbnm])in$/$1ni/
+    # iang
+    - derive/([qjlxn])iang$/$1aing/
+    - derive/([qjlxn])iang$/$1inag/
+    # ua
+    - derive/([gkh])ua$/$1au/
+    # uai
+    - derive/([gkh])uai$/$1aui/
+    - derive/([gkh])uai$/$1uia/
+    # uan
+    - derive/([qrtysdghjklzxcn])uan$/$1aun/
+    # un
+    - derive/([qrtysdghjklzxc])un$/$1nu/
+    # ue
+    - derive/([nlyjqx])ue$/$1eu/
+    # uang
+    - derive/([gkh])uang$/$1aung/
+    - derive/([gkh])uang$/$1uagn/
+    - derive/([gkh])uang$/$1unag/
+    - derive/([gkh])uang$/$1augn/
+    # iong
+    - derive/([jqx])iong$/$1inog/
+    - derive/([jqx])iong$/$1oing/
+    - derive/([jqx])iong$/$1iogn/
+    - derive/([jqx])iong$/$1oign/
+    # 其他
+    - derive/([rtsdghkzc])o(u|ng)$/$1o/
+    - derive/ong$/on/
+    - derive/([tl])eng$/$1en/
+    - derive/([qwrtypsdfghjklzxcbnm])([aeio])ng$/$1ng/
+    - derive/un$/ong/

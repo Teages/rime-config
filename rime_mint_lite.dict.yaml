@@ -1,0 +1,21 @@
+# Rime dictionary
+# encoding: utf-8
+#
+# 薄荷拼音精簡版詞典索引
+# 引用薄荷拼音萬象詞庫
+
+---
+name: rime_mint_lite
+version: 0.1.0
+sort: by_weight
+use_preset_vocabulary: false
+import_tables:
+  - dicts/custom_simple
+  - dicts/rime_mint.chars
+  - dicts/rime_mint.base
+  - dicts/rime_mint.correlation
+  - dicts/rime_mint.compatible
+  - dicts/rime_mint.ext
+  - dicts/other_kaomoji
+  - dicts/rime_ice.others
+...
