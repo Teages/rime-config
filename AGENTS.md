@@ -41,10 +41,14 @@
     │   ├── SKILL.md       # 技能說明與參考索引
     │   └── references/
     │       └── rime-ice/  # 霧凇拼音方案
-    └── rime-preset-mint/  # 薄荷輸入法技能
-        ├── SKILL.md       # 技能說明與參考索引
+    ├── rime-preset-mint/  # 薄荷輸入法技能
+    │   ├── SKILL.md       # 技能說明與參考索引
+    │   └── references/
+    │       └── oh-my-rime/ # 薄荷輸入法方案
+    └── rime-recipes-wanxiang/ # 萬象拼音技能
+        ├── SKILL.md           # 技能說明與參考索引
         └── references/
-            └── oh-my-rime/ # 薄荷輸入法方案
+            └── rime_wanxiang/ # 萬象拼音方案
 ```
 
 ## 核心原則
@@ -74,5 +78,6 @@ pnpm lint:fix
 - [rime-config 技能](.agents/skills/rime-config/SKILL.md) — Rime 配置指南、拼寫代數、自定義技巧
 - [rime-recipes-ice 技能](.agents/skills/rime-recipes-ice/SKILL.md) — 霧凇拼音方案詞庫與配置
 - [rime-preset-mint 技能](.agents/skills/rime-preset-mint/SKILL.md) — 薄荷輸入法方案、皮膚與 Lua 腳本
+- [rime-recipes-wanxiang 技能](.agents/skills/rime-recipes-wanxiang/SKILL.md) — 萬象拼音方案、輔助碼與 Lua 擴展
 
 - [Rime 官方網站](https://rime.im)
