@@ -10,7 +10,6 @@ schema:
   name: 薄荷拼音精簡版
   version: 0.1.0
   author:
-    - Teages
     - mintimate <@Mintimate>
   description: |
     基於薄荷拼音的全拼輸入方案（精簡版）。
