@@ -1,0 +1,8 @@
+# rime user config
+/*.userdb/
+installation.yaml
+user.yaml
+
+# rime build cache
+/build/
+/trash/
