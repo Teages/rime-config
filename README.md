@@ -62,14 +62,17 @@ pnpm install
 pnpm build
 ```
 
-此命令會從薄荷輸入法子模組複製方案文件、詞典、Lua 腳本及 OpenCC 配置到用戶目錄，並自動觸發【鼠鬚管】重新部署。
+此命令會從薄荷輸入法子模組複製方案文件、詞典、Lua 腳本及 OpenCC 配置到用戶目錄，自動下載萬象拼音語法模型，並觸發【鼠鬚管】重新部署。
 
 ## 配置說明
 
 | 文件 | 說明 |
 |------|------|
+| [rime_mint_lite.schema.yaml](rime_mint_lite.schema.yaml) | 薄荷拼音精簡方案定義 |
+| [rime_mint_lite.dict.yaml](rime_mint_lite.dict.yaml) | 精簡方案詞典 |
 | [default.custom.yaml](default.custom.yaml) | 全局配置：方案列表、候選詞數量、快捷鍵、中西文切換 |
 | [squirrel.custom.yaml](squirrel.custom.yaml) | 外觀配置：皮膚主題、字體、候選框樣式 |
+| [scripts/deploy.ts](scripts/deploy.ts) | 部署腳本（從子模組複製文件、下載語法模型、觸發重新部署） |
 | [user.yaml](user.yaml) | 用戶狀態（自動生成） |
 | [installation.yaml](installation.yaml) | 安裝信息（自動生成） |
 

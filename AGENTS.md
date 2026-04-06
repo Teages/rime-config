@@ -1,4 +1,5 @@
 > **重要**：此文件須與實際狀態保持同步。凡配置結構或工作流程有所變動，必先更新此文件。
+> **IMPORTANT**: Keep this file up to date with actual state and configuration. Update this file first before making any structural or workflow changes.
 
 # 【鼠鬚管】Agent 工作指南
 
@@ -26,35 +27,43 @@
 
 ```
 /
-├── AGENTS.md              # 本文件，Agent 工作指南
-├── package.json           # 項目依賴與腳本入口
-├── user.yaml              # Rime 用戶級配置
-├── installation.yaml      # Rime 安裝信息（自動生成，勿手動修改）
-├── build/                 # Rime 構建輸出目錄（自動生成，勿手動修改）
+├── AGENTS.md                    # 本文件，Agent 工作指南
+├── README.md                    # 項目說明
+├── package.json                 # 項目依賴與腳本入口
+├── eslint.config.ts             # ESLint 配置
+├── rime_mint_lite.schema.yaml   # 薄荷拼音精簡方案
+├── rime_mint_lite.dict.yaml     # 精簡方案詞典
+├── default.custom.yaml          # 全局配置自定義（方案列表、候選詞數量、快捷鍵）
+├── squirrel.custom.yaml         # 外觀配置自定義（皮膚主題、字體、候選框樣式）
+├── scripts/
+│   ├── deploy.ts                # 部署腳本（從子模組複製文件並觸發重新部署）
+│   └── tsconfig.json
 └── .agents/skills/
-    ├── rime-config/       # Rime 配置技能
-    │   ├── SKILL.md       # 技能說明與參考索引
-    │   └── references/    # 參考資料（只讀，git submodule）
-    │       ├── rime-wiki/ # Rime 官方 Wiki
-    │       └── squirrel/  # 【鼠鬚管】源碼
-    ├── rime-recipes-ice/  # 霧凇拼音技能
-    │   ├── SKILL.md       # 技能說明與參考索引
+    ├── rime-config/             # Rime 配置技能
+    │   ├── SKILL.md             # 技能說明與參考索引
+    │   └── references/          # 參考資料（只讀，git submodule）
+    │       ├── rime-wiki/       # Rime 官方 Wiki
+    │       └── squirrel/        # 【鼠鬚管】源碼
+    ├── rime-recipes-ice/        # 霧凇拼音技能
+    │   ├── SKILL.md             # 技能說明與參考索引
     │   └── references/
-    │       └── rime-ice/  # 霧凇拼音方案
-    ├── rime-preset-mint/  # 薄荷輸入法技能
-    │   ├── SKILL.md       # 技能說明與參考索引
+    │       └── rime-ice/        # 霧凇拼音方案
+    ├── rime-preset-mint/        # 薄荷輸入法技能
+    │   ├── SKILL.md             # 技能說明與參考索引
     │   └── references/
-    │       └── oh-my-rime/ # 薄荷輸入法方案
-    ├── rime-recipes-wanxiang/ # 萬象拼音技能
-    │   ├── SKILL.md           # 技能說明與參考索引
+    │       └── oh-my-rime/      # 薄荷輸入法方案
+    ├── rime-recipes-wanxiang/   # 萬象拼音技能
+    │   ├── SKILL.md             # 技能說明與參考索引
     │   └── references/
-    │       └── rime_wanxiang/ # 萬象拼音方案
+    │       └── rime_wanxiang/   # 萬象拼音方案
     └── rime-recipes-wanxiang-model/ # 萬象拼音語法模型技能
-        ├── SKILL.md                # 技能說明與參考索引
+        ├── SKILL.md                 # 技能說明與參考索引
         └── references/
-            ├── RIME-LMDG/          # 萬象拼音語法模型
-            └── RIME-LMDG.wiki/     # 萬象拼音語法模型 Wiki
+            ├── RIME-LMDG/           # 萬象拼音語法模型
+            └── RIME-LMDG.wiki/      # 萬象拼音語法模型 Wiki
 ```
+
+> **注意**：部署時由腳本自動從子模組複製的文件（如 `melt_eng.*`、`radical_pinyin.*`、`dicts/`、`lua/`、`opencc/`、`rime.lua` 等）已列入 `.gitignore`，不納入版本控制。語法模型（`*.gram`）由腳本自動從 GitHub Releases 下載至 `.cache/grammar/`，亦不納入版本控制。
 
 ## 核心原則
 
@@ -67,7 +76,7 @@
 
 ```bash
 # 構建配置
-pnpm cli build
+pnpm build
 
 # 代碼檢查
 pnpm lint
