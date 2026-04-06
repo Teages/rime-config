@@ -32,6 +32,7 @@ const TOP_FILES = [
   'radical_pinyin.dict.yaml',
   'default.yaml',
   'symbols.yaml',
+  'squirrel.yaml',
 ]
 
 // 需要複製的詞典子目錄

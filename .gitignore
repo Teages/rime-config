@@ -18,6 +18,7 @@ user.yaml
 /dicts/
 /lua/
 /opencc/
+squirrel.yaml
 
 node_modules
 .DS_Store

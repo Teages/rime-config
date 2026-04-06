@@ -10,7 +10,7 @@ patch:
     color_scheme_dark: mint_dark_blue
 
     # 候選框排列
-    candidate_list_layout: stacked
+    candidate_list_layout: linear
     text_orientation: horizontal
     inline_preedit: true
     inline_candidate: false
@@ -21,7 +21,7 @@ patch:
 
     # 尺寸
     corner_radius: 10
-    hilited_corner_radius: 0
+    hilited_corner_radius: 8
     border_height: 0
     border_width: 0
     line_spacing: 5
