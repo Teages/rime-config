@@ -16,6 +16,9 @@ import process from 'node:process'
 const ROOT = resolve(import.meta.dirname, '..')
 const MINT_REF = join(ROOT, '.agents/skills/rime-preset-mint/references/oh-my-rime')
 
+// Grammar model cache directory
+const GRAMMAR_MODEL_DIR = join(ROOT, '.cache/grammar')
+
 // 精簡版需要保留的 Lua 腳本
 const LUA_SCRIPTS = [
   'select_character.lua',
@@ -144,7 +147,32 @@ function deploy() {
     }
   }
 
-  // 6. 觸發【鼠鬚管】重新部署
+  // 6. 複製語法模型
+  log('檢查語法模型...')
+  const grammarModelSrc = join(GRAMMAR_MODEL_DIR, 'wanxiang-lts-zh-hans.gram')
+  const grammarModelDest = join(ROOT, 'wanxiang-lts-zh-hans.gram')
+  if (existsSync(grammarModelSrc)) {
+    copyFile(grammarModelSrc, grammarModelDest)
+    log('  ✓ wanxiang-lts-zh-hans.gram')
+  }
+  else {
+    log('  ⚠ 語法模型不存在，正在下載...')
+    try {
+      ensureDir(GRAMMAR_MODEL_DIR)
+      execSync(
+        'gh release download LTS --repo amzxyz/RIME-LMDG --pattern wanxiang-lts-zh-hans.gram --clobber --dir .cache/grammar',
+        { cwd: ROOT, timeout: 300_000, stdio: 'inherit' },
+      )
+      copyFile(grammarModelSrc, grammarModelDest)
+      log('  ✓ wanxiang-lts-zh-hans.gram (已下載)')
+    }
+    catch (e: any) {
+      log(`  ⚠ 下載語法模型失敗: ${e.message}`)
+      log('  請手動下載: https://github.com/amzxyz/RIME-LMDG/releases/tag/LTS')
+    }
+  }
+
+  // 7. 觸發【鼠鬚管】重新部署
   log('觸發【鼠鬚管】重新部署...')
   const squirrelBin = '/Library/Input Methods/Squirrel.app/Contents/MacOS/Squirrel'
   if (existsSync(squirrelBin)) {

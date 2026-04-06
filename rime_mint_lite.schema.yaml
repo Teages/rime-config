@@ -343,12 +343,25 @@ reduce_english_filter:
     - yan
     - yen
 
+# 語法模型
+grammar:
+  language: wanxiang-lts-zh-hans
+  collocation_max_length: 8
+  collocation_min_length: 2
+  collocation_penalty: -10
+  non_collocation_penalty: -20
+  weak_collocation_penalty: -35
+  rear_penalty: -12
+
 # 主翻譯器
 translator:
   dictionary: rime_mint_lite
   enable_word_completion: true
   spelling_hints: 8
   always_show_comments: true
+  contextual_suggestions: false
+  max_homophones: 5
+  max_homographs: 5
   comment_format:
     - xform/^/〔/
     - xform/$/〕/

@@ -3,6 +3,12 @@
 installation.yaml
 user.yaml
 
+# grammar model (large binary)
+*.gram
+
+# grammar model cache
+.cache/
+
 # rime build cache
 /build/
 /trash/
