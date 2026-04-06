@@ -1,6 +1,10 @@
 # Rime schema
 # encoding: utf-8
 #
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: Mintimate <@Mintimate>
+# SPDX-FileNotice: Based on oh-my-rime — https://github.com/Mintimate/oh-my-rime
+#
 # 薄荷拼音精簡版——基於 oh-my-rime 的 rime_mint 方案精簡而來。
 # 保留：全拼、英文混輸、Emoji、簡繁切換、拆字反查、錯音提示
 # 移除：日期時間、農曆、計算器、聲調顯示、五筆反查、筆畫反查等
