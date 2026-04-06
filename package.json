@@ -1,0 +1,22 @@
+{
+  "name": "@teages/rime-config",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.30.3",
+  "description": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Teages/rime-config.git"
+  },
+  "scripts": {
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint --cache --fix ."
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^8.0.0",
+    "eslint": "^10.2.0",
+    "typescript": "^6.0.2"
+  }
+}

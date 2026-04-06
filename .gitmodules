@@ -1,0 +1,9 @@
+[submodule "reference/rime-wiki"]
+	path = reference/rime-wiki
+	url = https://github.com/rime/home.wiki.git
+[submodule "reference/squirrel"]
+	path = reference/squirrel
+	url = https://github.com/rime/squirrel.git
+[submodule "reference/rime-ice"]
+	path = reference/rime-ice
+	url = https://github.com/iDvel/rime-ice.git
