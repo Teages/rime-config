@@ -20,8 +20,8 @@ patch:
     show_paging: false
 
     # 尺寸
-    corner_radius: 10
-    hilited_corner_radius: 8
+    corner_radius: 6
+    hilited_corner_radius: 6
     border_height: 0
     border_width: 0
     line_spacing: 5
