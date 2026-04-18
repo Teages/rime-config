@@ -445,6 +445,11 @@ speller:
     - xform/ńg|ňg|ǹg/eng/
     - xform/ń|ň|ǹ/en/
     - erase/^xx$/
+    # v 替代 ü（j/q/x/y 後的 u 即 ü）
+    - derive/([jqxy])u$/$1v/
+    - derive/([jqxy])ue$/$1ve/
+    - derive/([jqxy])uan$/$1van/
+    - derive/([jqxy])un$/$1vn/
     # 自動糾錯
     - derive/([aeiou])ng$/$1gn/
     - derive/([dtngkhrzcs])o(u|ng)$/$1o/
