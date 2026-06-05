@@ -16,10 +16,10 @@
     "lint:fix": "eslint --cache --fix ."
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^8.0.0",
-    "@types/node": "^25.5.2",
-    "eslint": "^10.2.0",
-    "jiti": "^2.6.1",
-    "typescript": "^6.0.2"
+    "@antfu/eslint-config": "^9.0.0",
+    "@types/node": "^25.9.1",
+    "eslint": "^10.4.1",
+    "jiti": "^2.7.0",
+    "typescript": "^6.0.3"
   }
 }
